@@ -94,7 +94,6 @@ const Modal = ({ userData, setShowModal }) => {
             <label className="form-check-label mx-2">Female</label>
           </div>
           <div className="d-flex justify-content-between">
-            <button className=" btn btn-primary">Edit</button>
             <button
               type="button"
               className=" btn btn-primary"
@@ -102,6 +101,7 @@ const Modal = ({ userData, setShowModal }) => {
             >
               Cancel
             </button>
+            <button className=" btn btn-primary">Edit</button>
           </div>
         </form>
       </div>

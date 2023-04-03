@@ -1,15 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
+axios.defaults.baseURL = ""
 
-export const userDetail = createSlice({
+export const userSlice = createSlice({
   name: "userSlice",
   initialState: {
     users: [],
     status: 0,
     loading: false,
     error: null,
+    searchUser: "",
   },
-  //   reducers:{},
+  reducers: {
+    searchUser: (state, action) => {
+      state.searchUser = action.payload
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getUsers.pending, (state) => {
@@ -22,7 +28,6 @@ export const userDetail = createSlice({
       })
       .addCase(getUsers.rejected, (state, action) => {
         state.loading = false
-        console.log(action)
         state.status = action.payload.status
         state.error = action.payload.message
       })
@@ -75,10 +80,7 @@ export const getUsers = createAsyncThunk(
   "getUsers",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await axios.get(
-        "https://642556ba7ac292e3cffdc0c8.mockapi.io/api/v1/users",
-      )
-      console.log(res.data)
+      const res = await axios.get("/api/v1/users")
       return res.data
     } catch (error) {
       console.log(error)
@@ -95,10 +97,7 @@ export const createUser = createAsyncThunk(
   "createUser",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await axios.post(
-        "https://642556ba7ac292e3cffdc0c8.mockapi.io/api/v1/users",
-        payload,
-      )
+      const res = await axios.post("/api/v1/users", payload)
       return res.data
     } catch (error) {
       return rejectWithValue({
@@ -114,9 +113,7 @@ export const deleteUser = createAsyncThunk(
   "deleteUser",
   async (id, { rejectWithValue }) => {
     try {
-      const res = await axios.delete(
-        `https://642556ba7ac292e3cffdc0c8.mockapi.io/api/v1/users/${id}`,
-      )
+      const res = await axios.delete(`/api/v1/users/${id}`)
       return res.data
     } catch (error) {
       return rejectWithValue({
@@ -132,10 +129,7 @@ export const editUser = createAsyncThunk(
   "editUser",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await axios.put(
-        `https://642556ba7ac292e3cffdc0c8.mockapi.io/api/v1/users/${payload.id}`,
-        payload,
-      )
+      const res = await axios.put(`/api/v1/users/${payload.id}`, payload)
       return res.data
     } catch (error) {
       return rejectWithValue({
@@ -146,4 +140,5 @@ export const editUser = createAsyncThunk(
   },
 )
 
-export default userDetail.reducer
+export const { searchUser } = userSlice.actions
+export default userSlice.reducer

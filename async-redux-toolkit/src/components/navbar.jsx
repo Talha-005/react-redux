@@ -1,6 +1,9 @@
 import { Link, useLocation } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { searchUser } from "../store/slices/userSlice"
 
 const Navbar = () => {
+  const dispatch = useDispatch()
   const location = useLocation()
   const LINKS = [
     {
@@ -35,8 +38,8 @@ const Navbar = () => {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {LINKS.map((props) => (
-              <li className="nav-item">
+            {LINKS.map((props,index) => (
+              <li className="nav-item" key={index}>
                 <Link
                   {...props}
                   className={`nav-link ${
@@ -50,9 +53,10 @@ const Navbar = () => {
           </ul>
           <form className="d-flex">
             <input
-              className="form-control me-2"
+              className="form-control"
               type="Search user..."
               placeholder="Search"
+              onChange={(e) => dispatch(searchUser(e.target.value))}
             />
           </form>
         </div>

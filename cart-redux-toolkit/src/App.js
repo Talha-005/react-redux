@@ -1,24 +1,23 @@
 import "./App.css"
-import { useEffect } from "react"
 import { Route } from "react-router-dom"
 import Home from "./pages/home"
-import Create from "./pages/create"
+import Cart from "./pages/cart"
 import Navbar from "./components/navbar"
 
 function App() {
   const ROUTES = [
     {
       path: "/",
-      component: Home,
+       component: Home,
     },
     {
-      path: "/create",
-      component: Create,
+      path: "/cart",
+       component: Cart,
     },
   ]
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [window.location.pathname])
+  // useEffect(() => {
+  //   window.scrollTo(0, 0)
+  // }, [window.location.pathname])
   return (
     <>
       <Navbar />
