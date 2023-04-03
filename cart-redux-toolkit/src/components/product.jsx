@@ -9,18 +9,21 @@ const Product = ({ product }) => {
       className="col-12 col-sm-6 col-md-4 col-lg-3 "
       key={product.id}
     >
-      <div class="card h-100">
+      <div className="card h-100">
         <img
           src={product.image}
-          class="card-img-top w-100"
+          className="card-img-top w-100"
           alt="..."
           style={{ height: 150, objectFit: "contain" }}
         />
-        <div class="card-body d-flex justify-content-between flex-column align-items-center">
-          <h5 class="card-title">{product.title}</h5>
-          <p class="card-text fw-bold">${product.price}</p>
+        <div className="card-body d-flex justify-content-between flex-column align-items-center">
+          <h5 className="card-title">{product.title}</h5>
+          <p className="card-text fw-bold">${product.price}</p>
+          <p>
+            &#9733;{product.rating.rate} ({product.rating.count})
+          </p>
           <button
-            class="btn btn-primary w-100"
+            className="btn btn-primary w-100"
             onClick={() => dispatch(addItem(product))}
           >
             Add to Cart

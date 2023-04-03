@@ -49,7 +49,7 @@ const Cart = () => {
                           <strong>{data.title}</strong>
                         </p>
                         <button
-                          className="btn btn-primary btn-sm me-1 mb-2"
+                          className="btn btn-primary btn-sm"
                           onClick={() => dispatch(removeItem(data.id))}
                         >
                           &#128465;
@@ -57,19 +57,21 @@ const Cart = () => {
                       </div>
                       <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
                         <div
-                          className="d-flex mb-4"
+                          className="d-flex mb-4 align-items-center justify-content-start justify-content-md-center"
                           style={{ maxWidth: "300px" }}
                         >
                           <button
                             onClick={() => dispatch(decrementQuantity(data.id))}
-                            className="btn btn-primary px-3 me-2"
+                            className="btn btn-primary px-3"
                           >
                             -
                           </button>
-                          <div className="form-outline">{data.quantity}</div>
+                          <div className="form-outline mx-2">
+                            {data.quantity}
+                          </div>
                           <button
                             onClick={() => dispatch(incrementQuantity(data.id))}
-                            className="btn btn-primary px-3 ms-2"
+                            className="btn btn-primary px-3"
                           >
                             +
                           </button>
@@ -93,12 +95,12 @@ const Cart = () => {
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                     Total Quantity
-                    <span>${totalQuantity}</span>
+                    <span>{totalQuantity}</span>
                   </li>
 
                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                     <div>
-                      <strong>Total amount</strong>
+                      <strong>Total Amount</strong>
                     </div>
                     <span>
                       <strong>${totalPrice}</strong>
